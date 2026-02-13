@@ -10,7 +10,7 @@ by adding `cachex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:cachex, "~> 0.1.0"}
+    {:d_cache, "~> 0.1.0"}
   ]
 end
 ```

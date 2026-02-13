@@ -1,6 +1,6 @@
 # Cachex
 
-**A Distributed Cache built in Elixir.**
+**Distribute your cache across multiple servers. Built with Elixir.**
 
 ## Installation
 

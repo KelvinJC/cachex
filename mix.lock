@@ -1,0 +1,3 @@
+%{
+  "ex_hash_ring": {:hex, :ex_hash_ring, "6.0.4", "bef9d2d796afbbe25ab5b5a7ed746e06b99c76604f558113c273466d52fa6d6b", [:mix], [], "hexpm", "89adabf31f7d3dfaa36802ce598ce918e9b5b33bae8909ac1a4d052e1e567d18"},
+}

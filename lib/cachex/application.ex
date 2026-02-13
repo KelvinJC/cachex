@@ -9,7 +9,11 @@ defmodule Cachex.Application do
   def start(_type, _args) do
     children = [
       # Instantiate the HashRing GenServer
-      {ExHashRing.Ring, name: DistributionRing}
+      {ExHashRing.Ring, name: DistributionRing},
+      # Instantiate the node monitor
+      Cachex.NodeMonitor,
+      # Instantiate the cache
+      Cachex.Cache
       # Starts a worker by calling: Cachex.Worker.start_link(arg)
       # {Cachex.Worker, arg}
     ]

@@ -8,11 +8,9 @@ defmodule Cachex.NodeMonitor do
   use GenServer
   alias ExHashRing.Ring
 
-  @name NodeMonitor
-
   @spec start_link(any()) :: :ignore | {:error, any()} | {:ok, pid()}
   def start_link(_opts) do
-    GenServer.start_link(__MODULE__, :no_state, name: @name)
+    GenServer.start_link(__MODULE__, :no_state, name: __MODULE__)
   end
 
   def init(:no_state = state) do

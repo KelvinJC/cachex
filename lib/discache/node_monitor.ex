@@ -1,4 +1,4 @@
-defmodule Cachex.NodeMonitor do
+defmodule Discache.NodeMonitor do
   @moduledoc """
    A Genserver to keep track of all nodes in the cluster.
 

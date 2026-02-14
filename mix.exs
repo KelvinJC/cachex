@@ -1,9 +1,9 @@
-defmodule Cachex.MixProject do
+defmodule Discache.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :cachex,
+      app: :discache,
       version: "0.1.0",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
@@ -15,7 +15,7 @@ defmodule Cachex.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Cachex.Application, []}
+      mod: {Discache.Application, []}
     ]
   end
 

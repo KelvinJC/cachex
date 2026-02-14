@@ -1,4 +1,4 @@
-defmodule Cachex.Cache do
+defmodule Discache.Cache do
   use GenServer
   alias ExHashRing.Ring
 

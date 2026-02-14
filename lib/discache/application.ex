@@ -1,4 +1,4 @@
-defmodule Cachex.Application do
+defmodule Discache.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -11,16 +11,16 @@ defmodule Cachex.Application do
       # Instantiate the HashRing GenServer
       {ExHashRing.Ring, name: DistributionRing},
       # Instantiate the node monitor
-      Cachex.NodeMonitor,
+      Discache.NodeMonitor,
       # Instantiate the cache
-      Cachex.Cache
-      # Starts a worker by calling: Cachex.Worker.start_link(arg)
-      # {Cachex.Worker, arg}
+      Discache.Cache
+      # Starts a worker by calling: Discache.Worker.start_link(arg)
+      # {Discache.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Cachex.Supervisor]
+    opts = [strategy: :one_for_one, name: Discache.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

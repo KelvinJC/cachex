@@ -8,11 +8,8 @@ defmodule Discache.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Instantiate the HashRing GenServer
       {ExHashRing.Ring, name: DistributionRing},
-      # Instantiate the node monitor
       Discache.NodeMonitor,
-      # Instantiate the cache
       Discache
       # Starts a worker by calling: Discache.Worker.start_link(arg)
       # {Discache.Worker, arg}

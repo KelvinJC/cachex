@@ -9,7 +9,7 @@ Get it from Github
 ```elixir
 def deps do
   [
-    {:discache, github: "https://github.com/kelvinjc/discache.git"}
+    {:discache, github: "kelvinjc/discache"}
   ]
 end
 ```

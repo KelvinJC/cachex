@@ -7,13 +7,26 @@ defmodule Discache.Application do
 
   @impl true
   def start(_type, _args) do
+    topologies = [
+      demo_cluster: [
+        strategy: Cluster.Strategy.Gossip,
+        config: [
+          port: 45892,
+          if_address: "0.0.0.0",
+          multicast_addr: "255.255.255.255",
+          broadcast_only: true
+        ]
+      ]
+    ]
+
     children = [
+      {Cluster.Supervisor, [topologies, [name: Discache.Cluster]]},
       # Instantiate the HashRing GenServer
       {ExHashRing.Ring, name: DistributionRing},
       # Instantiate the node monitor
       Discache.NodeMonitor,
       # Instantiate the cache
-      Discache.Cache
+      Discache
       # Starts a worker by calling: Discache.Worker.start_link(arg)
       # {Discache.Worker, arg}
     ]

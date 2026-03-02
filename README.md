@@ -8,9 +8,9 @@ Built on the BEAM's distribution capabilities, it offers fault-tolerant caching 
 
 Features
 - Transparent Distribution: Keys are automatically distributed across cluster nodes using consistent hashing
+- Simple API: Familiar get/put semantics with pattern matching friendly return values
 - Zero Configuration: Works out-of-the-box with your existing Elixir cluster
 - Fault Tolerant: Continues operating during node failures (with configurable replication)
-- Simple API: Familiar get/put semantics with pattern matching friendly return values
 - Lightweight: Minimal dependencies, just Elixir/OTP and ([:ex_hash_ring](https://github.com/discord/ex_hash_ring))
 
 
@@ -61,7 +61,8 @@ true = Discache.has_key?("user1")
 
 ## Cluster Setup
 Discache leverages the distributed capabilities of the Erlang Virtual Machine. 
-You may connect your nodes manually or preferably, use a library like libcluster for automatic discovery.
+The underlying assumption is that Discache is introduced into an already existing cluster.
+If this is not the case, you may connect your nodes manually or preferably, use a library like libcluster for automatic discovery.
 
 Start separate nodes by running your project in separate bash terminals. 
 
@@ -108,7 +109,7 @@ Configure a cluster topology and add it to your application's supervision tree.
 In this example we make use of the Gossip Strategy but you may use any cluster strategy that fits your use case.
 
 ```elixir
-defmodule YourApp.Application do
+defmodule MyApp.Application do
   use Application
 
   def start(_type, _args) do
@@ -126,12 +127,12 @@ defmodule YourApp.Application do
     ]
 
     children = [
-      # Add this line 
-      {Cluster.Supervisor, [topologies, [name: YourApp.Cluster]]},
-      # ... other processes ...
+      # ... 
+      {Cluster.Supervisor, [topologies, [name: MyApp.Cluster]]},
+      # ...
     ]
 
-    opts = [strategy: :one_for_one, name: YourApp.Supervisor]
+    opts = [strategy: :one_for_one, name: MyApp.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
